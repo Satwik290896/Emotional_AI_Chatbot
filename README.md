@@ -22,3 +22,8 @@ Sai Task
 Rohan Task
 
 Sai Task
+
+
+### Relevant Repository to Check out
+
+https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo

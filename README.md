@@ -1,6 +1,6 @@
 # Emotional_AI_Chatbot
 
-### Meet every Friday
+### -> Meet every Friday
 ### Week-1 (Tasks)
 
 Rohan Task

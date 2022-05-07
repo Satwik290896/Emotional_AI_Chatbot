@@ -1,10 +1,12 @@
 import numpy as np
+import tensorflow as tf
 from keras.models import Model
 from keras.layers import Dense, Input, Dropout, LSTM, Activation
 from keras.layers.embeddings import Embedding
 from keras.preprocessing import sequence
 from keras.initializers import glorot_uniform
 from emo_utils_second import *
+import matplotlib.pyplot as plt
 
 np.random.seed(1)
 
@@ -32,7 +34,7 @@ def sentences_to_indices(X, word_to_index, max_len):
         # Initialize j to 0
         j = 0
         # Loop over the words of sentence_words
-        print(sentence_words)
+        #print(sentence_words)
         for w in sentence_words:
             # Set the (i,j)th entry of X_indices to the index of the correct word.
             X_indices[i, j] = word_to_index[w]
@@ -114,8 +116,31 @@ def SentimentAnalysis(input_shape, word_to_vec_map, word_to_index):
 
     return model
 
+def custom_loss(y_true,y_pred):
+   # if y_true<5 and y_pred>=5:
+    cce = tf.keras.losses.CategoricalCrossentropy()
+    '''if tf.math.argmax(y_true)[0]<5:
+        if tf.math.argmax(y_pred)[0]>=5:
+            loss = cce(y_true, y_pred)
+        else:
+            loss = 2*(cce(y_true,y_pred))
+    else:
+        if tf.math.argmax(y_pred)[0]<5:
+            loss = cce(y_true,y_pred)
+        else:
+            loss = 2*(cce(y_true,y_pred))'''
+
+    if abs(tf.math.argmax(y_true)[0]-tf.math.argmax(y_pred)[0])==5:
+        loss = cce(y_true,y_pred)/2
+    else:
+        loss = cce(y_true,y_pred)
+
+
+    return loss
 
 if __name__ == "__main__":
+    f = open("Accuracy_every_100_epochs.txt","a+")
+    f.write("\n\n\nI am starting now\n\n")
     # Read train and test files
     X_train, Y_train = read_csv('TrainDTS.csv')
     X_test, Y_test = read_csv('TestDTS.csv')
@@ -131,34 +156,67 @@ if __name__ == "__main__":
     # Model and model summmary
     model = SentimentAnalysis((maxLen,), word_to_vec_map, word_to_index)
     model.summary()
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss=custom_loss, optimizer='adam', metrics=['accuracy'])
 
     X_train_indices = sentences_to_indices(X_train, word_to_index, maxLen)
     Y_train_oh = convert_to_one_hot(Y_train, C=10)
+    for k in range(1):
+        # Train model
+        NEpochs = 150*2
+        BatchSiz = 32
+        y_test_oh = convert_to_one_hot(Y_test,C=10)
+        X_test_indices = sentences_to_indices(X_test,word_to_index,maxLen)
+        history = model.fit(X_train_indices, Y_train_oh, epochs=NEpochs, batch_size=BatchSiz, shuffle=True,validation_data=(X_test_indices,y_test_oh))
 
-    # Train model
-    model.fit(X_train_indices, Y_train_oh, epochs=100, batch_size=32, shuffle=True)
+        X_test_indices = sentences_to_indices(X_test, word_to_index, max_len=maxLen)
+        Y_test_oh = convert_to_one_hot(Y_test, C=10)
 
-    X_test_indices = sentences_to_indices(X_test, word_to_index, max_len=maxLen)
-    Y_test_oh = convert_to_one_hot(Y_test, C=10)
+        # Evaluate model, loss and accuracy
+        loss, acc = model.evaluate(X_test_indices, Y_test_oh)
+        acc100 = acc*100
+        f.write("%f\n" %acc100)
+        print("Test accuracy = ", acc)
 
-    # Evaluate model, loss and accuracy
-    loss, acc = model.evaluate(X_test_indices, Y_test_oh)
-    print()
-    print("Test accuracy = ", acc)
+        # Compare prediction and expected emoji
+        C = 10
+        y_test_oh = np.eye(C)[Y_test.reshape(-1)]
+        X_test_indices = sentences_to_indices(X_test, word_to_index, maxLen)
+        pred = model.predict(X_test_indices)
+        for i in range(len(X_test)):
+            x = X_test_indices
+            num = np.argmax(pred[i])
+            #if (num != Y_test[i]):
+            #print('Expected emoji:' + label_to_emoji(Y_test[i]) + ' prediction: ' + X_test[i] + label_to_emoji(num).strip())
 
-    # Compare prediction and expected emoji
-    C = 10
-    y_test_oh = np.eye(C)[Y_test.reshape(-1)]
-    X_test_indices = sentences_to_indices(X_test, word_to_index, maxLen)
-    pred = model.predict(X_test_indices)
-    for i in range(len(X_test)):
-        x = X_test_indices
-        num = np.argmax(pred[i])
-        if (num != Y_test[i]):
-            print('Expected emoji:' + label_to_emoji(Y_test[i]) + ' prediction: ' + X_test[i] + label_to_emoji(num).strip())
+        # Test your sentence
+        x_test = np.array(['very happy'])
+        X_test_indices = sentences_to_indices(x_test, word_to_index, maxLen)
+        print(x_test[0] + ' ' + label_to_emoji(np.argmax(model.predict(X_test_indices))))
 
-    # Test your sentence
-    x_test = np.array(['very happy'])
-    X_test_indices = sentences_to_indices(x_test, word_to_index, maxLen)
-    print(x_test[0] + ' ' + label_to_emoji(np.argmax(model.predict(X_test_indices))))
+
+    fig, axs = plt.subplots(2, 2)
+    axs[0, 0].plot(range(1,len(history.history['accuracy'])+1),history.history['accuracy'])
+    axs[0, 0].set_title('Train dataset Accuracy for BatchSize:%d' %BatchSiz)
+    axs[1, 0].plot(range(1,len(history.history['loss'])+1),history.history['loss'],'tab:red')
+    axs[1, 0].set_title('Training Loss for BatchSize:%d' %BatchSiz)
+    axs[0, 1].plot(range(1,len(history.history['val_accuracy'])+1),history.history['val_accuracy'])
+    axs[0, 1].set_title('Validation dataset Accuracy for BatchSize:%d' %BatchSiz)
+    axs[1, 1].plot(range(1,len(history.history['val_loss'])+1),history.history['val_loss'],'tab:red')
+    axs[1, 1].set_title('Validation Loss for BatchSize:%d' %BatchSiz)
+    
+    '''axs[0, 0].plot(history.history['accuracy'])
+    axs[0, 0].set_title('Train dataset Accuracy')
+    axs[0, 1].plot(history.history['loss'])
+    axs[0, 1].set_title('Training Loss')
+    axs[1, 0].plot(history.history['val_accuracy'])
+    axs[1, 0].set_title('Validation dataset Accuracy')
+    axs[1, 1].plot(history.history['val_loss'])
+    axs[1, 1].set_title('Validation Loss')'''
+    for ax in axs.flat:
+        ax.set(xlabel='Epochs', ylabel='Parameter')
+
+    # Hide x labels and tick labels for top plots and y ticks for right plots.
+    '''for ax in axs.flat:
+        ax.label_outer()'''
+
+    plt.show()

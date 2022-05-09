@@ -43,19 +43,19 @@ TrainDataTrim.csv - file with our custom dataset of 200 sentences with emotion l
 ## Labelled Context Datasets - Training
 - Goto "LabelledContextTraining" folder. In this folder, the training happens on only the "Labelled Context Datasets"
 - Run "mainSecondatch2.py". In this, training is Context/Theme dependent.
--- Training happens on "TrainDTS.csv"
+-- Training happens on "TrainDTS.csv". Training is perfoemed using model "LSTM +Dropout" and no skip connections. Here, is a training plot(one such run) for this experiment.
 <img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322865-c1646cdf-1629-46f0-a36d-ec49c901f282.png">
 
 - Run "skipconnSecondatch2.py". In this, training is Context/Theme dependent
--- Training happens on "TrainDTS.csv"
+-- Training happens on "TrainDTS.csv". Training is performed using model "LSTM + Dropout + Skipconnections". Here, is a training plot(one such run) for this experiment.
 <img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322909-b88aff9c-60bc-4e43-816d-858517a68c78.png">
 
 - Run "CustomSecondatch2.py". In this, training is Context/Theme in-dependent
--- Training happens on "TrainDTSil.csv"
+-- Training happens on "TrainDTSil.csv". Training happens using model "LSTM+Dropout" and dataset will have an extra additional input of "Context/theme" to make a Context indpendent training. Here, is a training plot(one such run) for this experiment.
 <img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322979-21894d9a-21ee-4997-b166-eff1497e6b6d.png">
 
 - Run "CustomIncludeLabels.py". In this, training is Context/Theme in-dependent
--- Training happens on "TrainDTS.csv"
+-- Training happens on "TrainDTS.csv". Training happens using model "LSTM+Dropout" and have a Custom loss function to make a Context indpendent training. Here, is a training plot(one such run) for this experiment.
 <img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322931-6ba744e4-3308-4371-97e9-dac3da32118a.png">
 
 

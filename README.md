@@ -17,7 +17,9 @@
 Contains all the code used to train and test different models for the first part of the project focused on training without any consistent context. In its current form, this is meant to be run in Google Colab. It requires downloading the csv files from the same folder and saving them to your Google Drive. If you want to utilize the same directory and file names as I did, you should name and place folders to match what is in the notebook. For example:
 
 '/content/drive/MyDrive/Emotional_AI_Chatbot/RealTrainData.csv'
+
 '/content/drive/MyDrive/Emotional_AI_Chatbot/RealTestData.csv'
+
 '/content/drive/MyDrive/Emotional_AI_Chatbot/glove.6B.50d.txt'
 
 If your file locations do not match, you will have to change the references to file locations in the code.

@@ -11,7 +11,7 @@
 
 ## No Context Datasets vs Labelled Context Datasets
 
-The inputs in both the "No Context Dataset" and the "Labelled Context Dataset" are sentences. In the Labelled Context Dataset, these sentences fall into common topics, or contexts, such as "food" and "location." (In fact, these are the two used in our custom dataset.) There are no specific contexts used across the sentences in the No Context Dataset. The output labels for the No Context Dataset are 5 emotion classes. The output labels for the Labelled Context Dataset are 10 (emotion,context) pairs (the same 5 emotions, for each of two contexts). The training procedures for the Labelled Context Dataset explore ways to utilize this additional information. 
+The inputs in both the "No Context Dataset" and the "Labelled Context Dataset" are sentences. In the Labelled Context Dataset, these sentences fall into common topics, or contexts, such as "food" and "location." (In fact, these are the two used in our custom dataset.) There are no specific contexts used across the sentences in the No Context Dataset. The output labels for the No Context Dataset are 5 emotion classes. The output labels for the Labelled Context Dataset are 10 (emotion,context) pairs (the same 5 emotions, for each of two contexts). The training procedures for the Labelled Context Dataset explore ways to utilize this additional information. For to check Labelled ContextDatasets and experiments on it, open the folder "LabelledContextTraining"
 
 ## No Context Datasets - Training
 ### NN1.ipynb in the folder FirstNeuralNetwork:

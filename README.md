@@ -1,35 +1,39 @@
 # Emotional_AI_Chatbot
 
-### -> Meet every Friday
+## NLP Word Embedding used - Follow the Steps
+- Download glove.6B.50d.txt from "https://www.kaggle.com/watts2/glove6b50dtxt"
+- Place in the folder where you are performing NLP training
 
-##### Tasks
-1. Data file with some labelled (question-Emotion class); To identify which emotion class does the question belongs to??
+## Kaggle Dataset testing
+- Download the Dataset from "https://www.kaggle.com/datasets/parulpandey/emotion-dataset"
+- Run the python script "kaggleskip.py". It achieved an accuracy around 35% using LSTM and skip connections
+<img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322294-7699c946-d297-4b55-a026-f1e913c8eb1c.png">
 
-### Week-1 (Tasks)
+## No Context Datasets vs Labelled Context Datasets
 
-Rohan Task: Data file with some labelled (question-Emotion class)
+## No Context Datasets - Training
 
-Sai Task: To identify which emotion class does the question belongs to??
 
-### Week-2 (Tasks)
+## Labelled Context Datasets - Training
+- Goto "LabelledContextTraining" folder. In this folder, the training happens on only the "Labelled Context Datasets"
+- Run "mainSecondatch2.py". In this, training is Context/Theme dependent.
+-- Training happens on "TrainDTS.csv"
+<img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322865-c1646cdf-1629-46f0-a36d-ec49c901f282.png">
 
-Rohan Task
+- Run "skipconnSecondatch2.py". In this, training is Context/Theme dependent
+-- Training happens on "TrainDTS.csv"
+<img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322909-b88aff9c-60bc-4e43-816d-858517a68c78.png">
 
-Sai Task
+- Run "CustomSecondatch2.py". In this, training is Context/Theme in-dependent
+-- Training happens on "TrainDTSil.csv"
+<img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322979-21894d9a-21ee-4997-b166-eff1497e6b6d.png">
 
-### Week-3 (Tasks)
-
-Rohan Task
-
-Sai Task
+- Run "CustomIncludeLabels.py". In this, training is Context/Theme in-dependent
+-- Training happens on "TrainDTS.csv"
+<img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322931-6ba744e4-3308-4371-97e9-dac3da32118a.png">
 
 
 ### Relevant Repository to Check out
-
 https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo
 
-### Follow the Steps
 
-1. Download glove.6B.50d.txt from "https://www.kaggle.com/watts2/glove6b50dtxt"
-2. Run "python main.py"
-3. Achieve 95.5% Accuracy on Validation. It took 130 Epochs to reach 92% Accuracy

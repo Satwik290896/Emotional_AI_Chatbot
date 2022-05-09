@@ -20,7 +20,7 @@ Contains all the code used to train and test different models for the first part
 
 '/content/drive/MyDrive/Emotional_AI_Chatbot/RealTestData.csv'
 
-'/content/drive/MyDrive/Emotional_AI_Chatbot/glove.6B.50d.txt'
+'/content/drive/MyDrive/Emotional_AI_Chatbot/glove.6B.50d.txt' (See section above, titled "NLP Word Embedding used - Follow the Steps")
 
 If your file locations do not match, you will have to change the references to file locations in the code.
 

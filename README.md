@@ -28,7 +28,15 @@ If your file locations do not match, you will have to change the references to f
 
 Folder containing plots of the training and validation loss and accuracy for the first neural network, trained on the No Context Dataset.
 
+### csv files
 
+RealTrainData.csv - file with 170 sentences with emotion labels for training
+
+RealTestData.csv - file with 30 sentences with emotion labels for testing
+
+hyp_search.csv - file with the details and results of the hyperparameter search conducted
+
+TrainDataTrim.csv - file with 200 sentences with emotion labels, trimmed to get RealTrainData.csv and RealTestData.csv 
 
 ## Labelled Context Datasets - Training
 - Goto "LabelledContextTraining" folder. In this folder, the training happens on only the "Labelled Context Datasets"

@@ -62,4 +62,6 @@ TrainDataTrim.csv - file with our custom dataset of 200 sentences with emotion l
 ### Relevant Repository to Check out
 https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo
 
+https://towardsdatascience.com/day-123-of-nlp365-nlp-papers-summary-context-aware-embedding-for-targeted-aspect-based-be9f998d1131
+
 

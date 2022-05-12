@@ -41,7 +41,7 @@ hyp_search.csv - file with the details and results of the hyperparameter search 
 TrainDataTrim.csv - file with our custom dataset of 200 sentences with emotion labels, trimmed to get RealTrainData.csv and RealTestData.csv 
 
 ## Labelled Context Datasets - Training
-- Goto "LabelledContextTraining" folder. In this folder, the training happens on only the "Labelled Context Datasets"
+- Goto "LabelledContextTraining" folder. In this folder, the training happens on only the "Labelled Context Datasets." The training dataset has 100 examples, and the test dataset has 30.
 - Run "mainSecondatch2.py". In this, training is Context/Theme dependent.
 -- Training happens on "TrainDTS.csv". Training is perfoemed using model "LSTM +Dropout" and no skip connections. Here, is a training plot(one such run) for this experiment. We get Emoji Accuracy in the range of 45%-50%
 <img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167322865-c1646cdf-1629-46f0-a36d-ec49c901f282.png">

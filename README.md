@@ -59,7 +59,7 @@ TrainDataTrim.csv - file with our custom dataset of 200 sentences with emotion l
 <img width="886" height="500" alt="lstm_cell" src="https://user-images.githubusercontent.com/16485542/167524235-e179e9df-37d4-4a8d-abd9-c7ba636a211c.png">
 
 
-### Relevant Repository to Check out
+### Relevant Repository and Online Links to Check out (To understand where our ideas come from)
 https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo
 
 https://towardsdatascience.com/day-123-of-nlp365-nlp-papers-summary-context-aware-embedding-for-targeted-aspect-based-be9f998d1131

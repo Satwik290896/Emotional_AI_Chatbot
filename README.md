@@ -6,7 +6,7 @@ Emotional AI Chatbot is a Research project aimed at achieving better accuracy in
 
 Find the Literature Survey in URL: https://medium.com/@sv2665/emotion-perceivability-nlp-techniques-9f9a0eaa263b
 
-## Project - Theory and Findings
+# Project - Theory and Findings
 ## NLP Word Embedding used - Follow the Steps
 - Download glove.6B.50d.txt from "https://www.kaggle.com/watts2/glove6b50dtxt"
 - Place in the folder where you are performing NLP training

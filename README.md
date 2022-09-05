@@ -1,5 +1,12 @@
 # Emotional_AI_Chatbot
 
+Emotional AI Chatbot is a Research project aimed at achieving better accuracy in generating Emotion based answers to a Question. We find labelling the dataset in a specific manner (i.e; likewise Labelled Context Datasets) contributes to increase in performance and better Emotional Chatbots.
+
+## Literature Survey
+
+Find the Literature Survey in URL: https://medium.com/@sv2665/emotion-perceivability-nlp-techniques-9f9a0eaa263b
+
+## Project - Theory and Findings
 ## NLP Word Embedding used - Follow the Steps
 - Download glove.6B.50d.txt from "https://www.kaggle.com/watts2/glove6b50dtxt"
 - Place in the folder where you are performing NLP training
